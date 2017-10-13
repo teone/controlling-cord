@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+  <meta charset="utf-8">
+  <head>
+    <style>
+
+      .node {
+        cursor: pointer;
+      }
+
+      .node rect {
+        fill: #fff;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+      }
+
+      .node text {
+        font: 10px sans-serif;
+      }
+
+      .link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 1.5px;
+      }
+
+    </style>
+  </head>
+  <body>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+  <script>
+
+    var margin = {top: 20, right: 120, bottom: 20, left: 120};
+    var width = 960 - margin.right - margin.left;
+    var height = 800 - margin.top - margin.bottom;
+
+    var treeData = {
+      name: 'test',
+      x0: height / 2,
+      y0: 0,
+      children: []
+    };
+
+    function findNode(name, nodes) {
+      const node = nodes.shift();
+      if (node.name === name) {
+        return node;
+      }
+      return findNode(name, nodes.concat(node.children))
+    }
+
+    function addItem(name, parent, root) {
+      if (!parent) {
+        throw Error('You need to specify a parent to add a node in the Tree!')
+      }
+      return function() {
+        const parentNode = findNode(parent, [root]);
+        if (!parentNode.children) {
+          parentNode.children = []
+        }
+        parentNode.children.push({
+          name: name
+        })
+        update(root);
+      }
+    }
+
+    function removeItem(name, root) {
+      return function() {
+        const node = findNode(name, [root]);
+        _.remove(node.parent.children, {name: name});
+        update(root);
+      }
+    }
+
+    var _transitions = [
+      addItem('test1', 'test', treeData),
+      addItem('test2', 'test1', treeData),
+      addItem('test3', 'test', treeData)
+    ];
+
+    var _inverse_transitions = [
+      removeItem('test1', treeData),
+      removeItem('test2', treeData),
+      removeItem('test3', treeData)
+    ];
+
+    var i = 0;
+    var duration = 750;
+    var root;
+
+    var tree = d3.layout.tree()
+      .size([height, width]);
+
+    var diagonal = d3.svg.diagonal()
+      .projection(function(d) { return [d.y, d.x]; });
+
+    var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.right + margin.left)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    function update(data) {
+      // create the tree
+      var nodes = tree.nodes(treeData);
+      var links = tree.links(nodes);
+
+
+      renderNodes(nodes, data);
+
+      // update links
+      var link = svg.selectAll("path.link")
+        .data(links, function(d) { return d.target.name; });
+
+      // Enter any new links at the parent's previous position.
+      link.enter().insert("path", "g")
+        .attr("class", "link")
+        .attr("d", function(d) {
+          var o = {x: data.x0, y: data.y0};
+          return diagonal({source: o, target: o});
+        });
+
+      // Transition links to their new position.
+      link.transition()
+        .duration(duration)
+        .attr("d", diagonal);
+
+      // Transition exiting nodes to the parent's new position.
+      link.exit().transition()
+        .duration(duration)
+        .attr("d", function(d) {
+          var o = {x: data.x, y: data.y};
+          return diagonal({source: o, target: o});
+        })
+        .remove();
+    }
+
+    // start the tree
+    update(treeData);
+
+    // helpers
+    function renderNodes(nodes, data) {
+      var node = svg.selectAll("g.node")
+        .data(nodes, function(d) { return d.name });
+
+      // Enter any new nodes at the parent's previous position.
+      var nodeEnter = node.enter().append("g")
+        .attr({
+          class: "node",
+          transform: function(d) { return "translate(" + data.y0 + "," + data.x0 + ")"}
+        });
+
+      nodeEnter.append("rect")
+        .attr({
+          width: 0,
+          height: 0,
+          x: 0,
+          y: 0
+        });
+
+      nodeEnter.append('text')
+        .attr({
+          'text-anchor': 'middle',
+          opacity: 0
+        })
+        .text(d => d.name)
+
+      // Transition nodes to their new position.
+      var nodeUpdate = node.transition()
+        .duration(duration)
+        .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+      nodeUpdate.select("rect")
+        .attr({
+          width: 100,
+          height: 40,
+          x: -50,
+          y: -20
+        });
+
+      nodeUpdate.select("text")
+        .attr({
+          opacity: 1
+        })
+
+      // Transition exiting nodes to the parent's new position.
+      var nodeExit = node.exit().transition()
+        .duration(duration)
+        .attr("transform", function(d) { return "translate(" + data.y + "," + data.x + ")"; })
+        .remove();
+
+      nodeExit.select("rect")
+        .attr({
+          width: 0,
+          height: 0,
+          x: 0,
+          y: 0
+        });
+
+      nodeExit.select("text")
+        .style("fill-opacity", 1e-6);
+    }
+
+
+  </script>
+
+</body>
