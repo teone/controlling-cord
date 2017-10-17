@@ -1,0 +1,21 @@
+@import 'vars.scss';
+
+/* Stules */
+.reveal {
+    font-family: 'Open Sans', sans-serif !important; }
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    font-family: 'Open Sans', sans-serif !important; }
+
+.accent {
+    color: $color-accent !important;
+}
+
+ul.silent > li {
+    list-style: none;
+}

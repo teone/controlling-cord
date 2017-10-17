@@ -25,7 +25,7 @@
     window.diagram.init();
 
     var treeData = {
-      name: 'xProto',
+      name: 'redis',
       x0: window.diagram.height / 2,
       y0: 0,
       children: []
@@ -37,31 +37,25 @@
     var update = window.diagram.update;
 
     var _transitions = [
-      addItem('grpc', 'xProto', treeData),
-      addItem('chameleon', 'grpc', treeData),
-      addItem('rest', 'chameleon', treeData),
-      addItem('xos-tosca', 'grpc', treeData),
-      addItem('tosca', 'xos-tosca', treeData),
-      addItem('json', 'xProto', treeData),
-      addItem('xos-gui', 'json', treeData),
-      addItem('web interface', 'xos-gui', treeData),
-      addItem('redis', 'xProto', treeData),
-      addItem('xos-ws', 'redis', treeData),
-      addItem('web sockets', 'xos-ws', treeData),
+      addItem('slices', 'redis', treeData),
+//      addItem('nodes', 'redis', treeData),
+      addItem('...', 'redis', treeData),
+      addItem('services', 'redis', treeData),
+//      addItem('service nstances', 'redis', treeData),
+      addItem('xos-ws', '...', treeData),
+      window.diagram.addLink('slices', 'xos-ws', treeData),
+      window.diagram.addLink('services', 'xos-ws', treeData)
     ];
 
     var _inverse_transitions = [
-      removeItem('grpc', treeData),
-      removeItem('chameleon', treeData),
-      removeItem('rest', treeData),
-      removeItem('xos-tosca', treeData),
-      removeItem('tosca', treeData),
-      removeItem('json', treeData),
-      removeItem('xos-gui', treeData),
-      removeItem('web interface', treeData),
-      removeItem('redis', treeData),
+      removeItem('slices', treeData),
+//      removeItem('nodes', treeData),
+      removeItem('...', treeData),
+      removeItem('services', treeData),
+//      removeItem('service nstances', treeData),
       removeItem('xos-ws', treeData),
-      removeItem('web sockets', treeData),
+      window.diagram.removeLink('slices', 'xos-ws', treeData),
+      window.diagram.removeLink('services', 'xos-ws', treeData)
     ];
 
     // start the tree

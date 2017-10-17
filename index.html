@@ -63,17 +63,28 @@
 				<section>
 					<h1>Who our users are?</h1>
 				</section>
-				<section>
-					<h2 class="fragment">Operators</h2>
+				<section data-transition="zoom">
+					<h2>Operators</h2>
 					<h4 class="fragment">
 						deploy CORD, attach subscribers to it and monitor the system
 					</h4>
 				</section>
-				<section>
-					<h2 class="fragment">Developers</h2>
+				<section data-transition="zoom">
+					<h2>Developers</h2>
 					<h4 class="fragment">
 						introduce new features on top of a stable platform
 					</h4>
+				</section>
+				<section>
+					<section>
+						<h2>What is</h2>
+						<h2>controlling CORD</h2>
+						<h2>about ?</h2>
+					</section>
+					<section class="fig-container"
+						 data-fig-id="fig-controlling-cord"
+						 data-file="lib/diagrams/controlling-cord.html">
+					</section>
 				</section>
 				<section>
 					<section data-transition="zoom">
@@ -97,8 +108,64 @@
 					<section class="fig-container"
 						 data-fig-id="fig-xproto-journey"
 						 data-file="lib/diagrams/xproto-journey.html">
-						<!--<h1>some text</h1>-->
 					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Chameleon</h1>
+						<h3 class="fragment fade-up">Provide a binding between the
+							<code class="accent">gRPC</code> APIs exposed and
+							<code class="accent">REST</code> APIs
+						</h3>
+					</section>
+					<section>
+						<ul class="silent">
+							<li class="fragment fade-left">
+								<h4><i>pre xProto</i></h4>
+							</li>
+							<li class="fragment fade-left">
+								<h4>read google protobuf</h4>
+							</li>
+							<li class="fragment fade-left">
+								<h4>generate a python webserver</h4>
+							</li>
+						</ul>
+					</section>
+					<section>
+						new service onboarded -> models loaded in the core -> chameleon restarted
+						<br>
+						<b class="accent">add graph</b>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>xos-ws</h1>
+						<h3 class="fragment">
+							Listen to changes in the <br>
+							<span class="accent">data-model</span>
+							and emit events <br>
+							via <span class="accent">web-sockets</span>
+						</h3>
+					</section>
+					<section>
+						<ul class="silent">
+							<li class="fragment fade-left">
+								<h4><i>read only</i></h4>
+							</li>
+							<li class="fragment fade-left">
+								<h4>each model emit events on a particular redis pub/sub channel</h4>
+							</li>
+							<li class="fragment fade-left">
+								<h4>aggregate all of them</h4>
+							</li>
+							<li class="fragment fade-left">
+								<h4>publish on a single websocket channel</h4>
+							</li>
+						</ul>
+					</section>
+					<section class="fig-container"
+					 data-fig-id="fig-redis-to-ws"
+					 data-file="lib/diagrams/redis-to-ws.html">
 				</section>
 			</div>
 		</div>
@@ -116,7 +183,7 @@
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'https://d3js.org/d3.v4.min.js' },
+					{ src: 'lib/js/d3.js' },
 					{ src: 'plugin/d3js/d3js.js' }
 				],
 				transition: 'slide',

@@ -25,7 +25,7 @@
     window.diagram.init();
 
     var treeData = {
-      name: 'xProto',
+      name: 'backend',
       x0: window.diagram.height / 2,
       y0: 0,
       children: []
@@ -37,31 +37,21 @@
     var update = window.diagram.update;
 
     var _transitions = [
-      addItem('grpc', 'xProto', treeData),
-      addItem('chameleon', 'grpc', treeData),
-      addItem('rest', 'chameleon', treeData),
-      addItem('xos-tosca', 'grpc', treeData),
-      addItem('tosca', 'xos-tosca', treeData),
-      addItem('json', 'xProto', treeData),
-      addItem('xos-gui', 'json', treeData),
-      addItem('web interface', 'xos-gui', treeData),
-      addItem('redis', 'xProto', treeData),
-      addItem('xos-ws', 'redis', treeData),
-      addItem('web sockets', 'xos-ws', treeData),
+      addItem('synchronizer', 'backend', treeData),
+      addItem('data-model', 'synchronizer', treeData),
+      addItem('tosca', 'data-model', treeData),
+      addItem('rest', 'data-model', treeData),
+      addItem('gui', 'data-model', treeData),
+      addItem('websockets', 'data-model', treeData),
     ];
 
     var _inverse_transitions = [
-      removeItem('grpc', treeData),
-      removeItem('chameleon', treeData),
-      removeItem('rest', treeData),
-      removeItem('xos-tosca', treeData),
+      removeItem('synchronizer', treeData),
+      removeItem('data-model', treeData),
       removeItem('tosca', treeData),
-      removeItem('json', treeData),
-      removeItem('xos-gui', treeData),
-      removeItem('web interface', treeData),
-      removeItem('redis', treeData),
-      removeItem('xos-ws', treeData),
-      removeItem('web sockets', treeData),
+      removeItem('rest', treeData),
+      removeItem('gui', treeData),
+      removeItem('websockets', treeData),
     ];
 
     // start the tree

@@ -1,0 +1,22 @@
+@import 'vars.scss';
+
+.node {
+  cursor: pointer;
+}
+
+.node rect {
+  fill: lighten(#000, 20);
+  stroke: $color-accent;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+  fill: #fff;
+}
+
+.link, .link-alone {
+  fill: none;
+  stroke: $color-accent;
+  stroke-width: 1.5px;
+}
