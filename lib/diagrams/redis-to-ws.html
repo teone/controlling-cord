@@ -21,9 +21,6 @@
   <script src="helpers/tree.helpers.js"></script>
   <script>
 
-    // FIXME call init when this page is loaded
-    window.diagram.init();
-
     var treeData = {
       name: 'redis',
       x0: window.diagram.height / 2,
@@ -34,34 +31,55 @@
     // import functions from helpers
     var addItem = window.diagram.addItem;
     var removeItem = window.diagram.removeItem;
-    var update = window.diagram.update;
+
+    function addChannels() {
+      addItem('slices', 'redis', treeData)();
+      addItem('nodes', 'redis', treeData)();
+      addItem('...', 'redis', treeData)();
+      addItem('services', 'redis', treeData)();
+      addItem('service instances', 'redis', treeData)();
+    }
+
+    function removeChannels() {
+      removeItem('slices', treeData)();
+      removeItem('nodes', treeData)();
+      removeItem('...', treeData)();
+      removeItem('services', treeData)();
+      removeItem('service instances', treeData)();
+    }
+
+    function addWs() {
+      addItem('xos-ws', '...', treeData)();
+      window.diagram.addLink('slices', 'xos-ws', treeData)();
+      window.diagram.addLink('nodes', 'xos-ws', treeData)();
+      window.diagram.addLink('services', 'xos-ws', treeData)();
+      window.diagram.addLink('service instances', 'xos-ws', treeData)();
+    }
+
+    function removeWs() {
+      removeItem('xos-ws', treeData)();
+      window.diagram.removeLink('slices', 'xos-ws', treeData)();
+      window.diagram.removeLink('nodes', 'xos-ws', treeData)();
+      window.diagram.removeLink('services', 'xos-ws', treeData)();
+      window.diagram.removeLink('service instances', 'xos-ws', treeData)();
+    }
 
     var _transitions = [
-      addItem('slices', 'redis', treeData),
-//      addItem('nodes', 'redis', treeData),
-      addItem('...', 'redis', treeData),
-      addItem('services', 'redis', treeData),
-//      addItem('service nstances', 'redis', treeData),
-      addItem('xos-ws', '...', treeData),
-      window.diagram.addLink('slices', 'xos-ws', treeData),
-      window.diagram.addLink('services', 'xos-ws', treeData)
+      addChannels,
+      addWs,
+      addItem('xos-gui', 'xos-ws', treeData)
     ];
 
     var _inverse_transitions = [
-      removeItem('slices', treeData),
-//      removeItem('nodes', treeData),
-      removeItem('...', treeData),
-      removeItem('services', treeData),
-//      removeItem('service nstances', treeData),
-      removeItem('xos-ws', treeData),
-      window.diagram.removeLink('slices', 'xos-ws', treeData),
-      window.diagram.removeLink('services', 'xos-ws', treeData)
+      removeChannels,
+      removeWs,
+      removeItem('xos-gui', treeData)
     ];
 
     // start the tree
-    update(treeData);
-
-
+    window.diagram.register('redis-to-ws', {h: 8 ,v: 2}, function() {
+      window.diagram.init(treeData);
+    });
 
   </script>
 

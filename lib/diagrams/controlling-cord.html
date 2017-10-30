@@ -21,9 +21,6 @@
   <script src="helpers/tree.helpers.js"></script>
   <script>
 
-    // FIXME call init when this page is loaded
-    window.diagram.init();
-
     var treeData = {
       name: 'backend',
       x0: window.diagram.height / 2,
@@ -31,14 +28,37 @@
       children: []
     };
 
+    var addSynchronizers = function () {
+      addItem('synchronizer 1', 'backend', treeData)();
+      addItem('synchronizer 2', 'backend', treeData)();
+      addItem('synchronizer 3', 'backend', treeData)();
+    }
+
+    var removeSynchronizers = function () {
+      removeItem('synchronizer 1', treeData)();
+      removeItem('synchronizer 2', treeData)();
+      removeItem('synchronizer 3', treeData)();
+    }
+
+    function addDataModel() {
+      addItem('data-model', 'synchronizer 2', treeData)();
+      window.diagram.addLink('synchronizer 1', 'data-model', treeData)();
+      window.diagram.addLink('synchronizer 3', 'data-model', treeData)();
+    }
+
+    function removeDataModel() {
+      removeItem('data-model', treeData)();
+      window.diagram.removeLink('synchronizer 1', 'data-model', treeData)();
+      window.diagram.removeLink('synchronizer 3', 'data-model', treeData)();
+    }
+
     // import functions from helpers
     var addItem = window.diagram.addItem;
     var removeItem = window.diagram.removeItem;
-    var update = window.diagram.update;
 
     var _transitions = [
-      addItem('synchronizer', 'backend', treeData),
-      addItem('data-model', 'synchronizer', treeData),
+      addSynchronizers,
+      addDataModel,
       addItem('tosca', 'data-model', treeData),
       addItem('rest', 'data-model', treeData),
       addItem('gui', 'data-model', treeData),
@@ -46,8 +66,9 @@
     ];
 
     var _inverse_transitions = [
-      removeItem('synchronizer', treeData),
-      removeItem('data-model', treeData),
+//      removeItem('synchronizer', treeData),
+      removeSynchronizers,
+      removeDataModel,
       removeItem('tosca', treeData),
       removeItem('rest', treeData),
       removeItem('gui', treeData),
@@ -55,7 +76,9 @@
     ];
 
     // start the tree
-    update(treeData);
+    window.diagram.register('controlling-cord', {h: 5 ,v: 1}, function() {
+      window.diagram.init(treeData);
+    });
 
 
 

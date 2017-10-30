@@ -21,9 +21,6 @@
   <script src="helpers/tree.helpers.js"></script>
   <script>
 
-    // FIXME call init when this page is loaded
-    window.diagram.init();
-
     var treeData = {
       name: 'xProto',
       x0: window.diagram.height / 2,
@@ -65,7 +62,9 @@
     ];
 
     // start the tree
-    update(treeData);
+    window.diagram.register('xproto=journehy', {h: 6, v: 2}, function() {
+      window.diagram.init(treeData);
+    });
 
 
 
