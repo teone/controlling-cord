@@ -22,7 +22,7 @@
   <script>
 
     var treeData = {
-      name: 'redis',
+      name: 'xos',
       x0: window.diagram.height / 2,
       y0: 0,
       children: []
@@ -65,12 +65,14 @@
     }
 
     var _transitions = [
+      addItem('redis', 'xos', treeData),
       addChannels,
       addWs,
       addItem('xos-gui', 'xos-ws', treeData)
     ];
 
     var _inverse_transitions = [
+      removeItem('redis', treeData),
       removeChannels,
       removeWs,
       removeItem('xos-gui', treeData)

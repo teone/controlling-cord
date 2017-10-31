@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+  <meta charset="utf-8">
+  <head>
+    <style>
+
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+    </style>
+    <link rel="stylesheet" href="../css/diagram.css">
+  </head>
+  <body>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous"></script>
+  <script src="../../lib/js/d3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+  <script src="helpers/tree.helpers.js"></script>
+  <script>
+
+    var treeData = {
+      name: 'firewall',
+      x0: window.diagram.height / 2,
+      y0: 0,
+      children: []
+    };
+
+    // import functions from helpers
+    var addItem = window.diagram.addItem;
+    var removeItem = window.diagram.removeItem;
+
+    function addCore() {
+      addItem('xos-core', 'firewall-serviceinstance', treeData)();
+      window.diagram.addLink('firewall-service', 'xos-core', treeData)();
+      window.diagram.addLink('firewall-model', 'xos-core', treeData)();
+    }
+
+    function removeCore() {
+      removeItem('xos-core', treeData)();
+      window.diagram.removeLink('firewall-service', 'xos-core', treeData)();
+      window.diagram.removeLink('firewall-model', 'xos-core', treeData)();
+    }
+
+    function removeProto() {
+      removeItem('firewall-service', treeData)();
+      removeItem('firewall-serviceinstance', treeData)();
+      removeItem('firewall-model', treeData)();
+    }
+
+    function addRest() {
+      addItem('/firewall-service', 'chameleon', treeData)();
+      addItem('/firewall-serviceinstance', 'chameleon', treeData)();
+      addItem('/firewall-model', 'chameleon', treeData)();
+    }
+
+    function removeRest() {
+      removeItem('/firewall-service', treeData)();
+      removeItem('/firewall-serviceinstance', treeData)();
+      removeItem('/firewall-model', treeData)();
+    }
+
+    var _transitions = [
+      addItem('firewall-service', 'firewall', treeData),
+      addItem('firewall-serviceinstance', 'firewall', treeData),
+      addItem('firewall-model', 'firewall', treeData),
+      addCore,
+      addItem('grpc', 'xos-core', treeData),
+      addItem('chameleon', 'grpc', treeData),
+      addRest
+    ];
+
+    var _inverse_transitions = [
+      removeItem('firewall-service', treeData),
+      removeItem('firewall-serviceinstance', treeData),
+      removeItem('firewall-model', treeData),
+      removeCore,
+      removeItem('grpc', treeData),
+      removeItem('chameleon', treeData),
+      removeRest
+    ];
+
+    // start the tree
+    window.diagram.register('chameleon', {h: 7, v: 2}, function() {
+      window.diagram.init(treeData);
+    });
+
+
+
+  </script>
+
+</body>
