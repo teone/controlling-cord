@@ -15,3 +15,17 @@
 
 ul.silent > li {
   list-style: none; }
+
+.gui-logos > img {
+  max-width: 24% !important;
+  vertical-align: middle; }
+
+img.xos-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh; }
+
+.background-left {
+  background-position: 0 0 !important; }

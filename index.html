@@ -46,9 +46,9 @@
 						</h3>
 					</section>
 					<section>
-						<span class="fragment">TST Member</span>
+						<!--<span class="fragment">TST Member</span>-->
 						<p class="fragment fade-up">ONF Member of Technical staff</p>
-						<h1 class="fragment">Developer</h1>
+						<h1 class="fragment fade-up">Developer</h1>
 					</section>
 					<section>
 						<h3>from a</h3>
@@ -61,35 +61,58 @@
 					</section>
 				</section>
 				<section>
-					<h1>Who our users are?</h1>
-				</section>
-				<section data-transition="zoom">
-					<h2>Operators</h2>
-					<h4 class="fragment">
-						deploy CORD, attach subscribers to it and monitor the system
-					</h4>
-				</section>
-				<section data-transition="zoom">
-					<h2>Developers</h2>
-					<h4 class="fragment">
-						introduce new features on top of a stable platform
-					</h4>
-				</section>
-				<section>
 					<section>
 						<h2>What is</h2>
 						<h2>controlling CORD</h2>
 						<h2>about ?</h2>
 					</section>
 					<section class="fig-container"
-						 data-fig-id="fig-controlling-cord"
-						 data-file="lib/diagrams/controlling-cord.html">
+									 data-fig-id="fig-controlling-cord"
+									 data-file="lib/diagrams/controlling-cord.html">
+					</section>
+				</section>
+				<section data-transition="zoom">
+					<h1>Who our users are?</h1>
+				</section>
+				<section>
+					<section>
+						<h2>Operators</h2>
+						<h4 class="fragment">
+							deploy CORD, attach subscribers to it and monitor the system
+						</h4>
+					</section>
+					<section>
+						<h3>Expectations:</h3>
+						<ul class="silent">
+							<li class="fragment">bulk changes</li>
+							<li class="fragment">status report</li>
+							<li class="fragment">realtime notifications</li>
+						</ul>
+					</section>
+				</section>
+				<section data-transition="zoom">
+					<section>
+						<h2>Developers</h2>
+						<h4 class="fragment">
+							introduce new features on top of a stable platform
+						</h4>
+					</section>
+					<section>
+						<h3>Expectations:</h3>
+						<ul class="silent">
+							<li class="fragment">stable APIs</li>
+							<li class="fragment">documentation</li>
+							<li class="fragment">debugging tools</li>
+						</ul>
 					</section>
 				</section>
 				<section>
 					<section data-transition="zoom">
-						<h2>The generative toolchain</h2>
+						<h2 class="fragment">The generative toolchain</h2>
 						<h4 class="fragment">a journey from xProto to the UIs</h4>
+						<aside class="notes">
+							How did we achieve to have common UIs that support both cases?
+						</aside>
 					</section>
 					<section>
 						<h2>xProto</h2>
@@ -108,6 +131,35 @@
 					<section class="fig-container"
 						 data-fig-id="fig-xproto-journey"
 						 data-file="lib/diagrams/xproto-journey.html">
+						<aside class="notes">
+							This is the high level views, but how are this components connected togheter?
+						</aside>
+					</section>
+					<section>
+						<h1>Make me nice!</h1>
+						<img src="lib/images/xos-components.png">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>xos-tosca</h1>
+						<h3 class="fragment fade-up">
+							Enable
+							<span class="accent">well adopted standards</span>
+							to be used in
+							<span class="accent">CORD</span>
+						</h3>
+						<aside class="notes">
+							Topology and Orchestration Specification for Cloud Applications
+						</aside>
+					</section>
+					<section>
+						<img src="lib/images/tosca-def.png">
+						<img class="fragment fade-down" src="lib/images/tosca-recipe.png" style="position: absolute; top: -20px; right: -20px">
+					</section>
+					<section class="fig-container"
+					 data-fig-id="fig-tosca"
+					 data-file="lib/diagrams/tosca.html">
 					</section>
 				</section>
 				<section>
@@ -121,19 +173,17 @@
 					<section>
 						<ul class="silent">
 							<li class="fragment fade-left">
-								<h4><i>pre xProto</i></h4>
+								<h4>borrowed from VOLTHA</h4>
 							</li>
 							<li class="fragment fade-left">
-								<h4>read google protobuf</h4>
-							</li>
-							<li class="fragment fade-left">
-								<h4>generate a python webserver</h4>
+								<h4>expose a python webserver</h4>
 							</li>
 						</ul>
 					</section>
 					<section class="fig-container"
 						 data-fig-id="fig-chameleon"
 						 data-file="lib/diagrams/chameleon.html">
+					</section>
 						<aside class="notes">
 							new service onboarded -> models loaded in the core -> chameleon restarted -> generate new routes for the models
 						</aside>
@@ -155,19 +205,182 @@
 								<h4><i>read only</i></h4>
 							</li>
 							<li class="fragment fade-left">
-								<h4>each model emit events on a particular redis pub/sub channel</h4>
+								<h4>provide real time notification</h4>
 							</li>
 							<li class="fragment fade-left">
-								<h4>aggregate all of them</h4>
-							</li>
-							<li class="fragment fade-left">
-								<h4>publish on a single websocket channel</h4>
+								<h4>enable progressive caching in the GUI</h4>
 							</li>
 						</ul>
 					</section>
 					<section class="fig-container"
 					 data-fig-id="fig-redis-to-ws"
-					 data-file="lib/diagrams/redis-to-ws.html">
+					 data-file="lib/diagrams/redis-to-ws.html"></section>
+				</section>
+				<section>
+					<section>
+						<h1>xos-gui</h1>
+						<h3 class="fragment">
+							the <span class="accent">operator</span> portal
+						</h3>
+					</section>
+					<section>
+						<h1>CRUD</h1>
+						<h1>+</h1>
+						<h1>Custom Views</h1>
+					</section>
+					<section class="gui-logos">
+							<img class="plain fragment fade-right" src="lib/images/angular.png">
+							<img class="plain fragment fade-left" src="lib/images/rxjs.png">
+							<img class="plain fragment fade-right" src="lib/images/ts.png">
+							<img class="plain fragment fade-left" src="lib/images/bootstrap.png">
+						<aside class="notes">
+							Based on cutting edge web technologies
+						</aside>
+					</section>
+					<section>
+						<h1>Auto <br> generated</h1>
+						<aside class="notes">
+							given that we have 90+ models and they are still growing the GUI needs to be autogenerated
+						</aside>
+					</section>
+					<section>
+						<img src="lib/images/instance-xproto.png">
+						<img class="fragment fade-in" src="lib/images/instance-modeldef-fields.png" style="position: absolute; left: -60px; top: -40px">
+						<img class="fragment fade-in" src="lib/images/instance-modeldef-relations.png" style="position: absolute; right: -40px; top: 60px">
+					</section>
+					<section data-transition="zoom" data-background-image="lib/images/xos-gui.png" class="background-left">
+						<aside class="notes">
+							Generate the navigation, tables, forms
+						</aside>
+					</section>
+					<section>
+						<h1>progressive <br> caching</h1>
+					</section>
+					<section class="fig-container"
+									 data-fig-id="fig-progressive-caching"
+									 data-file="lib/diagrams/progressive-caching.html">
+						<aside class="notes">
+							when a view it's loaded it ask "discoverer" for the model config, then ask the store for data.
+							The store make a rest request return an Observable and start listening for events regarding that model to update the view in relatime
+						</aside>
+					</section>
+					<section>
+						<h3>progressive caching enables</h3>
+						<ul>
+							<li class="fragment fade-left">full text search</li>
+							<li class="fragment fade-left">dynamic population of relations dropdowns</li>
+							<li class="fragment fade-left">real-time notifications</li>
+						</ul>
+					</section>
+					<section>
+						<h1>keyboard <br> shortcuts</h1>
+						<ul>
+							<li class="fragment fade-left">Any view has its own shortcuts</li>
+							<li class="fragment fade-left">view them by pressing <code style="background: #3f3f3f" class="accent">?</code></li>
+							<img src="lib/images/xos-sidebar-1.png" class="fragment fade-left plain xos-sidebar">
+							<img src="lib/images/xos-sidebar-2.png" class="fragment fade-left plain xos-sidebar">
+						</ul>
+					</section>
+					<section>
+						<h1>debug</h1>
+						<img src="lib/images/xos-debug-view.png" style="max-width: 60%">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>extensibility</h1>
+					</section>
+					<section>
+						<h3>Services are that different that is not possible to generate a</h3>
+						<h2>one fit all</h2>
+						<h3>visualization</h3>
+					</section>
+					<section>
+						<div class="fragment fade-in">
+							A <span class="accent">component</span> is a set of <br>
+							<code>Html</code> + <code>Js/Ts</code> + <code>Css</code> <br>
+							that combine functionalities in an isolated entity that can be included in an Html page
+						</div>
+						<pre class="fragment fade-in"><code>
+<xos-form ng-model="vm.model" config="vm.formCfg"></xos-form>
+							</code></pre>
+						<aside class="notes">
+							Before talking about extensibility it's important the understant the concept of ui-component
+						</aside>
+					</section>
+					<section data-transition="zoom" data-background-image="lib/images/xos-form.png" class="background-left">
+					</section>
+					<section>
+						<h3>The XOS GUI is extensible by design and support:</h3>
+					</section>
+					<section>
+						<h1 class="fragment fade-up">Custom views</h1>
+						<ul>
+							<li class="fragment fade-left">At service level</li>
+							<li class="fragment fade-left">At profile level</li>
+						</ul>
+						<p class="fragment fade-up">Custom views can access any <span class="accent">API</span>
+							provided by and any <span class="accent">component</span> defined in the gui-core</p>
+					</section>
+					<section data-background-image="lib/images/subscriber-dashboard.png" class="background-left">
+					</section>
+					<section>
+						<h1 class="fragment fade-up">Component injection</h1>
+						<ul>
+							<li class="fragment fade-left">In the dashboard</li>
+							<li class="fragment fade-left">In the sidebar</li>
+						</ul>
+						<p class="fragment fade-up">Injected components can access any <span class="accent">API</span>
+							provided by and any <span class="accent">component</span> defined in the gui-core</p>
+					</section>
+					<section>
+						<h2>
+							<span class="accent">Extensibility</span> is available through
+							<span class="accent">runtime</span> loading of client side <span class="accent">applications</span></h2>
+					</section>
+					<section>
+						<img src="lib/images/ui-extensions.png" alt="">
+					</section>
+					<section>
+						<h1>Generator</h1>
+						<h3 class="fragment fade-up">Based on Yeoman</h3>
+						<h3 class="fragment fade-up">Setup the application skeleton</h3>
+						<h3 class="fragment fade-up">Create a development environment</h3>
+						<aside class="notes">
+							Yeoman is the de facto standard for js apps scaffholding
+						</aside>
+					</section>
+					<section>
+						<h2><code class="accent">yo xos-gui-extension</code></h2>
+					</section>
+				</section>
+				<section data-markdown="">
+					# Documentation
+					- guide.opencord.org
+					- swagger
+				</section>
+				<section>
+					<section>
+						<h1>Roadmap</h1>
+						<ul class="silent">
+							<li>Improve notifications</li>
+							<code>Provisioning in progress
+								defer object template_instance due to waiting on instance</code>
+							<li>downsize containers</li>
+						</ul>
+					</section>
+					<section>
+						<h1>Requirements</h1>
+					</section>
+					<section>
+						<h2>You are the users!</h2>
+						<h1 class="fragment fade-up">this is <span class="accent">your</span> call!</h1>
+						<h4 class="fragment fade-left">setup a biweekly call???</h4>
+					</section>
+				</section>
+				<section>
+					<h1 class="accent">Thanks</h1>
+					<p>@teone</p>
 				</section>
 			</div>
 		</div>
