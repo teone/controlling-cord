@@ -31,12 +31,13 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-transition="zoom" data-background-image="lib/images/cord-bg.jpg">
-					<h1>
-						<img class="plain" src="lib/images/cord-logo.png">
-					</h1>
-					<h2>User Interfaces</h2>
-				</section>
+				<section data-background-image="lib/images/opening-slide.jpg"></section>
+				<!--<section data-transition="zoom" data-background-image="lib/images/cord-bg.jpg">-->
+					<!--<h1>-->
+						<!--<img class="plain" src="lib/images/cord-logo.png">-->
+					<!--</h1>-->
+					<!--<h2>User Interfaces</h2>-->
+				<!--</section>-->
 				<section>
 					<section>
 						<h1>
@@ -304,7 +305,7 @@
 					</section>
 					<section>
 						<h3>Services are that different that is not possible to generate a</h3>
-						<h2 class="accent">one fit all</h2>
+						<h2 class="accent">one size fits all</h2>
 						<h3>visualization</h3>
 						<aside class="notes">
 							before moving on we need to understand what a component is in the GUI context
@@ -348,6 +349,19 @@
 						<p class="fragment fade-up">Injected components can access any <span class="accent">API</span>
 							provided by and any <span class="accent">component</span> defined in the gui-core</p>
 					</section>
+					<section>
+						<pre style="width: 100%"><code>XosComponentInjector.injectComponent(
+	'#dashboard-component-container',
+	'xosAlert',
+	{config: {type: 'success'}, show: true},
+	'Welcome to CORD Build!',
+	false
+);</code></pre>
+					</section>
+					<section class="background-left" data-background-image="lib/images/xos-Injected-component.png">
+					</section>
+					<!-- <section data-background-iframe="http://127.0.0.1:8080/xos/">
+					</section> -->
 					<section>
 						<h2>
 							<span class="accent">Extensibility</span> is available through
@@ -394,15 +408,37 @@
 						<a class="fragment fade-up" href="https://guide.opencord.org/operate/rest_apis.html" target="_blank">guide.opencord.org/operate/rest_apis</a>
 					</section>
 				</section>
-				<section>
+				<section data-transition="slide">
 					<section>
 						<h1>Roadmap</h1>
-						<ul class="silent">
-							<li>Improve notifications</li>
-							<code>Provisioning in progress
-								defer object template_instance due to waiting on instance</code>
-							<li>downsize containers</li>
-						</ul>
+					</section>
+					<section>
+						<h2 class="accent">Operational status</h2>
+						<h3 class="fragment fade-left">Better reporting</h3> <!-- "waiting on is not an error" -->
+						<h3 class="fragment fade-left">Desktop notifications</h3>
+						<h3 class="fragment fade-left">Notifications history</h3>
+					</section>
+					<section>
+						<h2 class="accent">Faster build</h2>
+						<h3 class="fragment fade-left">Docker multi-stage build</h3>
+						<h3 class="fragment fade-left">Webpack chunk build</h3>
+					</section>
+					<section>
+						<h2 class="accent">Service Graph</h2>
+						<h3 class="fragment fade-left">Improve positioning</h3>
+						<h3 class="fragment fade-left">Add feedback state</h3>
+						<h3 class="fragment fade-left">Support constraints</h3>
+					</section>
+					<section data-background-image="lib/images/3d-graph-1.png">
+					</section>
+					<section data-background-image="lib/images/3d-graph-2.png">
+					</section>
+					<section>
+						<h2 class="accent">XOS CLI</h2>
+						<h3 class="fragment fade-left">Document <code>xossh</code></h3>
+						<h3 class="fragment fade-left">Create a wrapper around it</h3>
+						<h3 class="fragment fade-left"><code>Slice.objects.all()</code></h3>
+						<h3 class="fragment fade-left"><code>slice list</code></h3>
 					</section>
 					<section>
 						<h2>Get involved in <span class="accent">CORD</span>!</h2>
@@ -410,6 +446,8 @@
 						<h4 class="fragment fade-left">cutting edge technologies</h4>
 						<h4 class="fragment fade-left accent">fun community</h4>
 					</section>
+				</section>
+				<section>
 					<section>
 						<h1>Requirements</h1>
 						<aside class="notes">
