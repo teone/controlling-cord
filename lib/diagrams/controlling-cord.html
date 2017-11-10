@@ -18,7 +18,7 @@
     crossorigin="anonymous"></script>
   <script src="../../lib/js/d3.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
-  <script src="helpers/tree.helpers.js"></script>
+  <script type="application/javascript" src="https://raw.githubusercontent.com/teone/reveal.js-diagram-plugin/master/revealjs-diagram.js"></script>
   <script>
 
     var treeData = {
@@ -76,7 +76,7 @@
     ];
 
     // start the tree
-    window.diagram.register('controlling-cord', {h: 2 ,v: 1}, function() {
+    window.diagram.register('controlling-cord', {h: 6 ,v: 4}, function() {
       window.diagram.init(treeData);
     });
 

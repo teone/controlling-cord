@@ -48,7 +48,12 @@
 						</h3>
 					</section>
 					<section>
-						<!--<span class="fragment">TST Member</span>-->
+						<h1>Italian</h1>
+						<img src="lib/images/pizza.jpg" class="fragment fade-in">
+						<img src="lib/images/pasta.jpg" class="fragment fade-in" style="position: absolute; left: 5px;">
+					</section>
+					<section>
+						<span class="fragment">Web/Cloud Application</span>
 						<p class="fragment fade-up">ONF Member of Technical staff</p>
 						<h1 class="fragment fade-up">Developer</h1>
 					</section>
@@ -134,6 +139,22 @@
 								optional uint32 link_deleted_count = 11 [default = 0, help_text = "Incremented each time a provided_link is deleted from this ServiceInstance"];
 							}
 							</code></pre>
+					</section>
+					<section>
+						<h2>xProto options for GUIs: <span class="accent">models</span></h2>
+						<pre><code>app_label</code></pre>
+						<pre><code>tosca_description</code></pre>
+						<pre><code>gui_hidden</code></pre>
+					</section>
+					<section>
+						<h2>xProto options for GUIs: <span class="accent">fields</span></h2>
+						<pre><code>help_text</code></pre>
+						<pre><code>default, max_length, blank</code></pre>
+						<pre><code>verbose_name</code></pre>
+						<pre><code>gui_hidden</code></pre>
+						<pre><code>choices</code></pre>
+						<pre><code>validators</code></pre>
+						<pre><code>tosca_key</code></pre>
 					</section>
 					<section class="fig-container"
 						 data-fig-id="fig-xproto-journey"
@@ -238,6 +259,7 @@
 						<h1>+</h1>
 						<h1>Custom Views</h1>
 					</section>
+					<section data-background-iframe="http://127.0.0.1:8080/xos/"></section>
 					<section class="gui-logos">
 							<img class="plain fragment fade-right" src="lib/images/angular.png">
 							<img class="plain fragment fade-left" src="lib/images/rxjs.png">
@@ -287,17 +309,19 @@
 						<ul>
 							<li class="fragment fade-left">Any view has its own shortcuts</li>
 							<li class="fragment fade-left">view them by pressing <code style="background: #3f3f3f" class="accent">?</code></li>
-							<img src="lib/images/xos-sidebar-1.png" class="pdf-hide fragment fade-left plain xos-sidebar">
-							<img src="lib/images/xos-sidebar-2.png" class="pdf-hide fragment fade-left plain xos-sidebar">
 						</ul>
+						<!--<img src="lib/images/xos-sidebar-1.png" class="pdf-hide fragment fade-left plain xos-sidebar">-->
+						<!--<img src="lib/images/xos-sidebar-2.png" class="pdf-hide fragment fade-left plain xos-sidebar">-->
 					</section>
+					<section data-background-iframe="http://127.0.0.1:8080/xos/"></section>
 					<section>
 						<h1>debug</h1>
-						<img src="lib/images/xos-debug-view.png" style="max-width: 60%">
+						<!--<img src="lib/images/xos-debug-view.png" style="max-width: 60%">-->
 						<aside class="notes">
 							enable with `a`
 						</aside>
 					</section>
+					<section data-background-iframe="http://127.0.0.1:8080/xos/"></section>
 				</section>
 				<section>
 					<section>
@@ -307,24 +331,6 @@
 						<h3>Services are that different that is not possible to generate a</h3>
 						<h2 class="accent">one size fits all</h2>
 						<h3>visualization</h3>
-						<aside class="notes">
-							before moving on we need to understand what a component is in the GUI context
-						</aside>
-					</section>
-					<section>
-						<div class="fragment fade-in">
-							A <span class="accent">component</span> is a set of <br>
-							<code>Html</code> + <code>Js/Ts</code> + <code>Css</code> <br>
-							that combine functionalities in an isolated entity that can be included in an Html page
-						</div>
-						<pre class="fragment fade-in"><code>
-<xos-form ng-model="vm.model" config="vm.formCfg"></xos-form>
-							</code></pre>
-						<aside class="notes">
-							Before talking about extensibility it's important the understant the concept of ui-component
-						</aside>
-					</section>
-					<section data-transition="zoom" data-background-image="lib/images/xos-form.png" class="background-left">
 					</section>
 					<section>
 						<h3>The XOS GUI is extensible by design and support:</h3>
@@ -339,6 +345,22 @@
 							provided by and any <span class="accent">component</span> defined in the gui-core</p>
 					</section>
 					<section data-background-image="lib/images/subscriber-dashboard.png" class="background-left">
+					</section>
+					<section>
+						<h2 class="accent">UI Components</h2>
+						<div class="fragment fade-in">
+							A <span class="accent">component</span> is a set of <br>
+							<code>Html</code> + <code>Js/Ts</code> + <code>Css</code> <br>
+							that combine functionalities in an isolated entity that can be included in an Html page
+						</div>
+						<pre class="fragment fade-in"><code>
+<xos-form ng-model="vm.model" config="vm.formCfg"></xos-form>
+							</code></pre>
+						<aside class="notes">
+							Before talking about extensibility it's important the understant the concept of ui-component
+						</aside>
+					</section>
+					<section data-transition="zoom" data-background-image="lib/images/xos-form.png" class="background-left">
 					</section>
 					<section>
 						<h1 class="fragment fade-up">Component injection</h1>
@@ -432,6 +454,8 @@
 					<section data-background-image="lib/images/3d-graph-1.png">
 					</section>
 					<section data-background-image="lib/images/3d-graph-2.png">
+					</section>
+					<section data-background-image="lib/images/layered-graph.png">
 					</section>
 					<section>
 						<h2 class="accent">XOS CLI</h2>
